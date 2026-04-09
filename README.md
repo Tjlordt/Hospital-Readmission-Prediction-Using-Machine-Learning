@@ -1,75 +1,98 @@
-# Hospital-Readmission-Prediction-Using-Machine-Learning
+🏥 Hospital Readmission Prediction Using Machine Learning
 
+📌 Overview
 
-## Overview
-This project applies machine learning techniques to predict hospital readmission risk using patient health data. It demonstrates how data-driven models can support healthcare decision-making and improve patient outcomes.
+Hospital readmissions are a major challenge in healthcare, often indicating gaps in patient care, discharge planning, or follow-up support. This project builds a machine learning model to predict whether a patient is likely to be readmitted within 30 days using real hospital data.
 
-## Research Aim
-The aim of this project is to explore how machine learning can be used to identify patients at higher risk of hospital readmission based on health-related indicators.
+The goal is to support early intervention, improve patient outcomes, and reduce healthcare costs.
 
-## Objectives
-- Predict the likelihood of patient readmission
-- Apply machine learning techniques to healthcare data
-- Evaluate model performance using classification metrics
-- Demonstrate the value of predictive analytics in healthcare
+⸻
 
-## Dataset
-The dataset used in this project contains patient health indicators such as:
-- Pregnancies
-- Glucose
-- Blood Pressure
-- Skin Thickness
-- Insulin
-- BMI
-- Diabetes Pedigree Function
-- Age
+📊 Dataset
 
-For demonstration purposes, a simple readmission target variable was created from patient glucose levels.
+This project uses the Diabetes 130-US hospitals dataset (1999–2008), which contains over 100,000 patient records across 130 hospitals.
 
-## Methodology
-The project followed a structured machine learning workflow:
+Key Features:
+	•	Patient demographics (age, gender, race)
+	•	Admission details
+	•	Diagnosis information
+	•	Medication data
+	•	Number of procedures and visits
 
-### 1. Data Loading
-The dataset was imported into Python using Pandas.
+Target Variable:
+	•	readmitted
+	•	<30 → readmitted within 30 days (High Risk)
+	•	>30 or NO → not readmitted within 30 days (Low Risk)
 
-### 2. Data Preparation
-A target variable called `Readmitted` was created to simulate readmission risk.
+⸻
 
-### 3. Train-Test Split
-The data was split into training and testing sets for model development and evaluation.
+🎯 Objective
 
-### 4. Model Training
-A Random Forest Classifier was used to train the prediction model.
+To build a classification model that predicts 30-day hospital readmission risk, enabling healthcare providers to identify high-risk patients and prioritise care interventions.
 
-### 5. Evaluation
-The model was evaluated using:
-- Accuracy score
-- Classification report
-- Confusion matrix
-- Feature importance analysis
+⸻
 
-## Tools and Technologies
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
+🛠️ Technologies Used
+	•	Python
+	•	Pandas & NumPy
+	•	Scikit-learn
+	•	Matplotlib
 
-## Results
-The model produced a prediction output for hospital readmission risk and identified important patient features contributing to the classification.
+⸻
 
-## Healthcare Relevance
-Hospital readmission is an important issue in healthcare because it affects both patient outcomes and healthcare costs. Predictive models can help identify high-risk patients early and support better interventions, planning, and decision-making.
+⚙️ Methodology
 
-## Conclusion
-This project demonstrates how machine learning can be applied to healthcare-related data to predict hospital readmission risk. It provides a useful foundation for future work in health data analytics, predictive modelling, and health informatics.
+1. Data Preprocessing
+	•	Replaced missing values (?) with NaN
+	•	Handled missing data using imputation
+	•	Dropped irrelevant columns (IDs, high-missing fields)
+	•	Encoded categorical variables using One-Hot Encoding
 
-## Future Work
-Future improvements could include:
-- Using real hospital readmission datasets
-- Testing additional machine learning models such as XGBoost
-- Improving feature engineering
-- Adding data visualisations and dashboards
+⸻
 
-## Repository Structure
-- `readmission_prediction_model.py` — main machine learning script
-- `README.md` — project documentation
+2. Feature Engineering
+	•	Converted target into binary:
+	•	1 → readmitted within 30 days
+	•	0 → otherwise
+
+⸻
+
+3. Model Development
+
+Two models were built and compared:
+	•	Logistic Regression (baseline, interpretable)
+	•	Random Forest Classifier (non-linear, higher performance)
+
+⸻
+
+4. Handling Class Imbalance
+	•	Used class_weight="balanced" to improve detection of high-risk patients
+
+⸻
+
+5. Evaluation Metrics
+	•	ROC-AUC Score
+	•	Precision & Recall
+	•	Confusion Matrix
+	•	Precision-Recall Curve
+
+⸻
+
+6. Threshold Tuning
+
+Adjusted decision threshold from 0.50 → 0.30 to improve recall, ensuring more high-risk patients are identified.
+
+⸻
+
+📈 Results
+	•	Random Forest outperformed Logistic Regression in capturing complex patterns
+	•	Threshold tuning significantly improved recall for high-risk patients
+	•	Key predictors of readmission were identified using feature importance
+
+⸻
+
+🔍 Key Insights
+	•	Patients with higher hospital utilisation and certain diagnoses are more likely to be readmitted
+	•	Model performance improves when focusing on recall rather than accuracy
+	•	Early identification of high-risk patients can support better discharge planning
+
